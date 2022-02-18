@@ -22,10 +22,10 @@ void main() {
 
       final LineChartData data = LineChartData(
           titlesData: FlTitlesData(
-        leftTitles: SideTitles(reservedSize: 12, margin: 8, showTitles: true),
-        rightTitles: SideTitles(reservedSize: 44, margin: 20, showTitles: true),
-        topTitles: SideTitles(showTitles: false),
-        bottomTitles: SideTitles(showTitles: false),
+        leftTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 20, showTitles: true)),
+        rightTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 64, showTitles: true)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ));
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -39,10 +39,10 @@ void main() {
 
       final LineChartData data = LineChartData(
           titlesData: FlTitlesData(
-        leftTitles: SideTitles(reservedSize: 44, margin: 18, showTitles: true),
-        rightTitles: SideTitles(showTitles: false),
-        topTitles: SideTitles(showTitles: false),
-        bottomTitles: SideTitles(showTitles: false),
+        leftTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 62, showTitles: true)),
+        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ));
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -56,11 +56,11 @@ void main() {
 
       final LineChartData data = LineChartData(
           titlesData: FlTitlesData(
-        leftTitles: SideTitles(showTitles: false),
+        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         rightTitles:
-            SideTitles(reservedSize: 100, margin: 400, showTitles: true),
-        topTitles: SideTitles(showTitles: false),
-        bottomTitles: SideTitles(showTitles: false),
+            AxisTitles(sideTitles: SideTitles(reservedSize: 500, showTitles: true)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ));
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -74,11 +74,11 @@ void main() {
 
       final LineChartData data = LineChartData(
           titlesData: FlTitlesData(
-        leftTitles: SideTitles(showTitles: false),
-        rightTitles: SideTitles(reservedSize: 10, margin: 0, showTitles: true),
-        topTitles: SideTitles(reservedSize: 230, margin: 10, showTitles: true),
+        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 10, showTitles: true)),
+        topTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 240, showTitles: true)),
         bottomTitles:
-            SideTitles(reservedSize: 10, margin: 312, showTitles: true),
+            AxisTitles(sideTitles: SideTitles(reservedSize: 322, showTitles: true)),
       ));
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -92,12 +92,12 @@ void main() {
 
       final LineChartData data = LineChartData(
           titlesData: FlTitlesData(
-        leftTitles: SideTitles(reservedSize: 0, margin: 0, showTitles: true),
+        leftTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 0, showTitles: true)),
         rightTitles:
-            SideTitles(reservedSize: 10, margin: 342134123, showTitles: false),
-        topTitles: SideTitles(reservedSize: 80, margin: 0, showTitles: true),
+            AxisTitles(sideTitles: SideTitles(reservedSize: 342134133, showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 80, showTitles: true)),
         bottomTitles:
-            SideTitles(reservedSize: 10, margin: 312, showTitles: false),
+            AxisTitles(sideTitles: SideTitles(reservedSize: 322, showTitles: false)),
       ));
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -110,7 +110,6 @@ void main() {
       const viewSize = Size(600, 400);
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         minY: 0,
         maxY: 0,
       );
@@ -160,14 +159,13 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
-          topTitles: SideTitles(showTitles: true, reservedSize: 20, margin: 0),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 20)),
           rightTitles:
-              SideTitles(showTitles: true, reservedSize: 30, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 30)),
           bottomTitles:
-              SideTitles(showTitles: true, reservedSize: 40, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
         ),
-        axisTitleData: FlAxisTitleData(show: false),
         borderData: FlBorderData(show: true, border: Border.all(width: 8)),
         clipData: FlClipData(
           top: false,
@@ -202,14 +200,13 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
-          topTitles: SideTitles(showTitles: true, reservedSize: 20, margin: 20),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40,)),
           rightTitles:
-              SideTitles(showTitles: true, reservedSize: 30, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 30)),
           bottomTitles:
-              SideTitles(showTitles: true, reservedSize: 30, margin: 10),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
         ),
-        axisTitleData: FlAxisTitleData(show: false),
         borderData: FlBorderData(show: true, border: Border.all(width: 8)),
         clipData: FlClipData(
           top: true,
@@ -526,7 +523,6 @@ void main() {
           barData,
         ],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -757,7 +753,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -814,7 +809,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -872,7 +866,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -931,7 +924,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -992,7 +984,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1041,7 +1032,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1091,7 +1081,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1161,7 +1150,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1253,7 +1241,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1323,7 +1310,6 @@ void main() {
         lineBarsData: [lineChartBarData],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1434,7 +1420,6 @@ void main() {
         lineBarsData: [lineChartBarData1, lineChartBarData2],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         betweenBarsData: [betweenBarData1],
       );
 
@@ -1572,7 +1557,6 @@ void main() {
         lineBarsData: [lineChartBarData1],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1621,7 +1605,6 @@ void main() {
         lineBarsData: [lineChartBarData1],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1675,7 +1658,6 @@ void main() {
         lineBarsData: [lineChartBarData1],
         showingTooltipIndicators: [],
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -1706,396 +1688,6 @@ void main() {
     });
   });
 
-  group('drawTitles()', () {
-    test('test 1', () {
-      final LineChartBarData lineChartBarData1 = LineChartBarData(
-        show: false,
-        spots: const [
-          FlSpot(1, 9),
-          FlSpot(8, 9),
-        ],
-        dotData: FlDotData(show: true),
-        barWidth: 80,
-        isStrokeCapRound: true,
-        isStepLineChart: true,
-        shadow: const Shadow(
-          color: Color(0x0100FF00),
-          offset: Offset(10, 15),
-          blurRadius: 10,
-        ),
-      );
-
-      final LineChartData data = LineChartData(
-        minY: 0,
-        maxY: 10,
-        minX: 0,
-        maxX: 10,
-        lineBarsData: [lineChartBarData1],
-        showingTooltipIndicators: [],
-        titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
-      );
-
-      final LineChartPainter lineChartPainter = LineChartPainter();
-      final holder = PaintHolder<LineChartData>(data, data, 1.0);
-      MockCanvasWrapper _mockCanvasWrapper = MockCanvasWrapper();
-      MockBuildContext _mockBuildContext = MockBuildContext();
-      lineChartPainter.drawTitles(
-          _mockBuildContext, _mockCanvasWrapper, holder);
-      verifyNever(_mockCanvasWrapper.drawText(any, any));
-    });
-
-    test('test 2', () {
-      const viewSize = Size(100, 100);
-
-      final LineChartBarData lineChartBarData1 = LineChartBarData(
-        show: false,
-        spots: const [
-          FlSpot(1, 9),
-          FlSpot(8, 9),
-        ],
-        dotData: FlDotData(show: true),
-        barWidth: 80,
-        isStrokeCapRound: true,
-        isStepLineChart: true,
-        shadow: const Shadow(
-          color: Color(0x0100FF00),
-          offset: Offset(10, 15),
-          blurRadius: 10,
-        ),
-      );
-
-      final LineChartData data = LineChartData(
-        minY: 0,
-        maxY: 0,
-        minX: 1,
-        maxX: 1,
-        lineBarsData: [lineChartBarData1],
-        showingTooltipIndicators: [],
-        titlesData: FlTitlesData(
-          show: true,
-          leftTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 84,
-            rotateAngle: 33,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.ltr,
-          ),
-          topTitles: SideTitles(showTitles: false),
-          rightTitles: SideTitles(showTitles: false),
-          bottomTitles: SideTitles(showTitles: false),
-        ),
-        axisTitleData: FlAxisTitleData(show: false),
-      );
-
-      final LineChartPainter lineChartPainter = LineChartPainter();
-      final holder = PaintHolder<LineChartData>(data, data, 1.0);
-      MockCanvasWrapper _mockCanvasWrapper = MockCanvasWrapper();
-      when(_mockCanvasWrapper.size).thenAnswer((realInvocation) => viewSize);
-      when(_mockCanvasWrapper.canvas).thenReturn(MockCanvas());
-
-      MockUtils mockUtils = MockUtils();
-      Utils.changeInstance(mockUtils);
-
-      when(mockUtils.getBestInitialIntervalValue(any, any, any))
-          .thenAnswer((realInvocation) => 0);
-      when(mockUtils.getEfficientInterval(any, any))
-          .thenAnswer((realInvocation) => 1);
-
-      when(mockUtils.getThemeAwareTextStyle(any, any))
-          .thenAnswer((realInvocation) => MockData.textStyle1);
-      when(mockUtils.formatNumber(any)).thenAnswer((realInvocation) => '1');
-      when(mockUtils.calculateRotationOffset(any, any))
-          .thenAnswer((realInvocation) => Offset.zero);
-
-      MockBuildContext _mockBuildContext = MockBuildContext();
-
-      lineChartPainter.drawTitles(
-          _mockBuildContext, _mockCanvasWrapper, holder);
-
-      verify(_mockCanvasWrapper.drawText(any, any, any)).called(1);
-    });
-
-    test('test 3', () {
-      const viewSize = Size(100, 100);
-
-      final LineChartBarData lineChartBarData1 = LineChartBarData(
-        show: false,
-        spots: const [
-          FlSpot(1, 9),
-          FlSpot(8, 9),
-        ],
-        dotData: FlDotData(show: true),
-        barWidth: 80,
-        isStrokeCapRound: true,
-        isStepLineChart: true,
-        shadow: const Shadow(
-          color: Color(0x0100FF00),
-          offset: Offset(10, 15),
-          blurRadius: 10,
-        ),
-      );
-
-      final LineChartData data = LineChartData(
-        minY: 0,
-        maxY: 10,
-        minX: 0,
-        maxX: 10,
-        lineBarsData: [lineChartBarData1],
-        showingTooltipIndicators: [],
-        titlesData: FlTitlesData(
-          show: true,
-          leftTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 84,
-            rotateAngle: 33,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.ltr,
-          ),
-          topTitles: SideTitles(showTitles: false),
-          rightTitles: SideTitles(showTitles: false),
-          bottomTitles: SideTitles(showTitles: false),
-        ),
-        axisTitleData: FlAxisTitleData(show: false),
-      );
-
-      final LineChartPainter lineChartPainter = LineChartPainter();
-      final holder = PaintHolder<LineChartData>(data, data, 1.0);
-      MockCanvasWrapper _mockCanvasWrapper = MockCanvasWrapper();
-      when(_mockCanvasWrapper.size).thenAnswer((realInvocation) => viewSize);
-      when(_mockCanvasWrapper.canvas).thenReturn(MockCanvas());
-
-      MockUtils mockUtils = MockUtils();
-      Utils.changeInstance(mockUtils);
-
-      when(mockUtils.getThemeAwareTextStyle(any, any)).thenAnswer(
-          (realInvocation) => const TextStyle(color: Color(0xFF00FF00)));
-
-      when(mockUtils.getBestInitialIntervalValue(any, any, any))
-          .thenAnswer((realInvocation) => 0);
-
-      when(mockUtils.formatNumber(any)).thenAnswer((realInvocation) {
-        final value = realInvocation.positionalArguments[0].toInt();
-        if (value == 0) {
-          return 'AA-0';
-        } else if (value == 1) {
-          return 'BB-1';
-        }
-        return 'SS-${value.toInt()}';
-      });
-
-      when(mockUtils.calculateRotationOffset(any, any))
-          .thenAnswer((realInvocation) => Offset.zero);
-
-      when(mockUtils.getEfficientInterval(any, any))
-          .thenAnswer((realInvocation) => 1);
-
-      MockBuildContext _mockBuildContext = MockBuildContext();
-
-      lineChartPainter.drawTitles(
-          _mockBuildContext, _mockCanvasWrapper, holder);
-
-      final result = verify(
-          _mockCanvasWrapper.drawText(captureAny, captureAny, captureAny));
-      result.called(11);
-
-      final textPainter0 = result.captured[0] as TextPainter;
-      final offset0 = result.captured[1] as Offset;
-      final rotateAngle0 = result.captured[2] as double;
-      expect(textPainter0.width, 84);
-      expect((textPainter0.text as TextSpan).text, "AA-0");
-      expect(textPainter0.textAlign, TextAlign.right);
-      expect(textPainter0.textDirection, TextDirection.ltr);
-      expect(offset0.dy, 100 - textPainter0.height / 2);
-      expect(rotateAngle0, 33);
-
-      final textPainter1 = result.captured[3] as TextPainter;
-      final offset1 = result.captured[4] as Offset;
-      final rotateAngle1 = result.captured[5] as double;
-      expect(textPainter1.width, 84);
-      expect((textPainter1.text as TextSpan).text, "BB-1");
-      expect(textPainter1.textAlign, TextAlign.right);
-      expect(textPainter1.textDirection, TextDirection.ltr);
-      expect(offset1.dy, 90 - textPainter1.height / 2);
-      expect(rotateAngle1, 33);
-
-      final textPainter2 = result.captured[6] as TextPainter;
-      final offset2 = result.captured[7] as Offset;
-      final rotateAngle2 = result.captured[8] as double;
-      expect(textPainter2.width, 84);
-      expect((textPainter2.text as TextSpan).text, "SS-2");
-      expect(textPainter2.textAlign, TextAlign.right);
-      expect(textPainter2.textDirection, TextDirection.ltr);
-      expect(offset2.dy, 80 - textPainter2.height / 2);
-      expect(rotateAngle2, 33);
-    });
-
-    test('test 4', () {
-      const viewSize = Size(110, 120);
-
-      final LineChartBarData lineChartBarData1 = LineChartBarData(
-        show: false,
-        spots: const [
-          FlSpot(1, 9),
-          FlSpot(8, 9),
-        ],
-        dotData: FlDotData(show: true),
-        barWidth: 80,
-        isStrokeCapRound: true,
-        isStepLineChart: true,
-        shadow: const Shadow(
-          color: Color(0x0100FF00),
-          offset: Offset(10, 15),
-          blurRadius: 10,
-        ),
-      );
-
-      final LineChartData data = LineChartData(
-        minY: 0,
-        maxY: 10,
-        minX: 0,
-        maxX: 10,
-        lineBarsData: [lineChartBarData1],
-        showingTooltipIndicators: [],
-        titlesData: FlTitlesData(
-          show: true,
-          leftTitles: SideTitles(
-            showTitles: false,
-          ),
-          topTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 10,
-            rotateAngle: 33,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.ltr,
-            margin: 0,
-          ),
-          rightTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 10,
-            rotateAngle: 33,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.ltr,
-            margin: 0,
-          ),
-          bottomTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 10,
-            rotateAngle: 33,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.ltr,
-            margin: 0,
-          ),
-        ),
-        axisTitleData: FlAxisTitleData(show: false),
-      );
-
-      final LineChartPainter lineChartPainter = LineChartPainter();
-      final holder = PaintHolder<LineChartData>(data, data, 1.0);
-      MockCanvasWrapper _mockCanvasWrapper = MockCanvasWrapper();
-      when(_mockCanvasWrapper.size).thenAnswer((realInvocation) => viewSize);
-      when(_mockCanvasWrapper.canvas).thenReturn(MockCanvas());
-
-      MockUtils mockUtils = MockUtils();
-      Utils.changeInstance(mockUtils);
-
-      when(mockUtils.getThemeAwareTextStyle(any, any)).thenAnswer(
-          (realInvocation) => const TextStyle(color: Color(0xFF00FF00)));
-
-      when(mockUtils.getBestInitialIntervalValue(any, any, any))
-          .thenAnswer((realInvocation) => 0);
-
-      when(mockUtils.formatNumber(any)).thenAnswer((realInvocation) {
-        final value = realInvocation.positionalArguments[0].toInt();
-        if (value == 0) {
-          return 'AA-0';
-        } else if (value == 1) {
-          return 'BB-1';
-        }
-        return 'SS-${value.toInt()}';
-      });
-
-      when(mockUtils.calculateRotationOffset(any, any))
-          .thenAnswer((realInvocation) => Offset.zero);
-
-      when(mockUtils.getEfficientInterval(any, any))
-          .thenAnswer((realInvocation) => 1);
-
-      MockBuildContext _mockBuildContext = MockBuildContext();
-
-      lineChartPainter.drawTitles(
-          _mockBuildContext, _mockCanvasWrapper, holder);
-
-      final result = verify(
-          _mockCanvasWrapper.drawText(captureAny, captureAny, captureAny));
-      result.called(33);
-
-      // Top Titles
-      final textPainter0 = result.captured[0] as TextPainter;
-      final offset0 = result.captured[1] as Offset;
-      final rotateAngle0 = result.captured[2] as double;
-      expect((textPainter0.text as TextSpan).text, "AA-0");
-      expect(textPainter0.textAlign, TextAlign.right);
-      expect(textPainter0.textDirection, TextDirection.ltr);
-      expect(offset0.dx, -textPainter0.width / 2);
-      expect(rotateAngle0, 33);
-
-      final textPainter1 = result.captured[3] as TextPainter;
-      final offset1 = result.captured[4] as Offset;
-      final rotateAngle1 = result.captured[5] as double;
-      expect((textPainter1.text as TextSpan).text, "BB-1");
-      expect(textPainter1.textAlign, TextAlign.right);
-      expect(textPainter1.textDirection, TextDirection.ltr);
-      expect(offset1.dx, 10 - textPainter1.width / 2);
-      expect(rotateAngle1, 33);
-
-      final textPainter2 = result.captured[6] as TextPainter;
-      final offset2 = result.captured[7] as Offset;
-      final rotateAngle2 = result.captured[8] as double;
-      expect((textPainter2.text as TextSpan).text, "SS-2");
-      expect(textPainter2.textAlign, TextAlign.right);
-      expect(textPainter2.textDirection, TextDirection.ltr);
-      expect(offset2.dx, 20 - textPainter2.width / 2);
-      expect(rotateAngle2, 33);
-
-      // right titles
-      final textPainter3 = result.captured[33] as TextPainter;
-      final offset3 = result.captured[34] as Offset;
-      final rotateAngle3 = result.captured[35] as double;
-      expect(textPainter3.width, 10);
-      expect((textPainter3.text as TextSpan).text, "AA-0");
-      expect(textPainter3.textAlign, TextAlign.right);
-      expect(textPainter3.textDirection, TextDirection.ltr);
-      expect(offset3.dy, 100 - textPainter3.height / 2 + 10);
-      expect(rotateAngle3, 33);
-
-      final textPainter4 = result.captured[36] as TextPainter;
-      final offset4 = result.captured[37] as Offset;
-      final rotateAngle4 = result.captured[38] as double;
-      expect(textPainter4.width, 10);
-      expect((textPainter4.text as TextSpan).text, "BB-1");
-      expect(textPainter4.textAlign, TextAlign.right);
-      expect(textPainter4.textDirection, TextDirection.ltr);
-      expect(offset4.dy, 90 - textPainter4.height / 2 + 10);
-      expect(rotateAngle4, 33);
-
-      final textPainter5 = result.captured[39] as TextPainter;
-      final offset5 = result.captured[40] as Offset;
-      final rotateAngle5 = result.captured[41] as double;
-      expect(textPainter5.width, 10);
-      expect((textPainter5.text as TextSpan).text, "SS-2");
-      expect(textPainter5.textAlign, TextAlign.right);
-      expect(textPainter5.textDirection, TextDirection.ltr);
-      expect(offset5.dy, 80 - textPainter5.height / 2 + 10);
-      expect(rotateAngle5, 33);
-    });
-  });
-
   group('drawExtraLines()', () {
     test('test 1', () {
       const viewSize = Size(100, 100);
@@ -2106,7 +1698,6 @@ void main() {
           minX: 0,
           maxX: 10,
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           extraLinesData:
               ExtraLinesData(horizontalLines: [], verticalLines: []));
 
@@ -2133,7 +1724,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
       );
 
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -2159,7 +1749,6 @@ void main() {
           minX: 0,
           maxX: 10,
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           extraLinesData: ExtraLinesData(horizontalLines: [
             HorizontalLine(
                 y: 1, color: const Color(0x11111111), strokeWidth: 11),
@@ -2256,7 +1845,6 @@ void main() {
           minX: 0,
           maxX: 10,
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           extraLinesData: ExtraLinesData(
             horizontalLines: [],
             verticalLines: [],
@@ -2377,9 +1965,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
           rightTitles:
-              SideTitles(showTitles: false, reservedSize: 10, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: false, reservedSize: 10)),
         ),
       );
 
@@ -2393,9 +1981,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
           rightTitles:
-              SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
         ),
       );
       final LineChartPainter lineChartPainter = LineChartPainter();
@@ -2421,9 +2009,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          topTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
           bottomTitles:
-              SideTitles(showTitles: false, reservedSize: 10, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: false, reservedSize: 10)),
         ),
       );
 
@@ -2437,9 +2025,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          topTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
           bottomTitles:
-              SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
         ),
       );
 
@@ -2466,9 +2054,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
           rightTitles:
-              SideTitles(showTitles: false, reservedSize: 10, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: false, reservedSize: 10)),
         ),
       );
 
@@ -2482,9 +2070,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
           rightTitles:
-              SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
         ),
       );
 
@@ -2511,9 +2099,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          topTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 0),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 10)),
           bottomTitles:
-              SideTitles(showTitles: false, reservedSize: 10, margin: 0),
+              AxisTitles(sideTitles: SideTitles(showTitles: false, reservedSize: 10)),
         ),
       );
 
@@ -2527,9 +2115,9 @@ void main() {
       final LineChartData data = LineChartData(
         titlesData: FlTitlesData(
           show: true,
-          topTitles: SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
           bottomTitles:
-              SideTitles(showTitles: true, reservedSize: 10, margin: 2),
+              AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 12)),
         ),
       );
 
@@ -2590,7 +2178,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             touchSpotThreshold: 0.5,
           ));
@@ -2651,7 +2238,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             touchSpotThreshold: 5,
           ));
@@ -2723,7 +2309,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             touchSpotThreshold: 5,
           ));
@@ -2793,7 +2378,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             touchSpotThreshold: 0.5,
           ));
@@ -2858,7 +2442,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             touchSpotThreshold: 5,
           ));
@@ -2943,7 +2526,6 @@ void main() {
           lineBarsData: [lineChartBarData1, lineChartBarData2],
           showingTooltipIndicators: [],
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           lineTouchData: LineTouchData(
             distanceCalculator: (Offset a, Offset b) {
               final dx = a.dx - b.dx;
@@ -2990,7 +2572,6 @@ void main() {
           minX: 0,
           maxX: 10,
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           gridData: FlGridData(
             show: false,
             drawVerticalLine: true,
@@ -3022,7 +2603,6 @@ void main() {
           minX: 0,
           maxX: 10,
           titlesData: FlTitlesData(show: false),
-          axisTitleData: FlAxisTitleData(show: false),
           gridData: FlGridData(
               show: true,
               drawVerticalLine: false,
@@ -3097,7 +2677,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         gridData: FlGridData(
             show: true,
             drawVerticalLine: true,
@@ -3207,7 +2786,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         backgroundColor: MockData.color1.withOpacity(0),
       );
 
@@ -3230,7 +2808,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         backgroundColor: MockData.color1,
       );
 
@@ -3262,7 +2839,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         rangeAnnotations: RangeAnnotations(),
       );
 
@@ -3285,7 +2861,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         rangeAnnotations: RangeAnnotations(
           horizontalRangeAnnotations: [
             HorizontalRangeAnnotation(y1: 4, y2: 10, color: MockData.color1),
@@ -3328,7 +2903,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         rangeAnnotations: RangeAnnotations(
           verticalRangeAnnotations: [
             VerticalRangeAnnotation(x1: 1, x2: 2, color: MockData.color1),
@@ -3371,7 +2945,6 @@ void main() {
         minX: 0,
         maxX: 10,
         titlesData: FlTitlesData(show: false),
-        axisTitleData: FlAxisTitleData(show: false),
         rangeAnnotations: RangeAnnotations(
           horizontalRangeAnnotations: [
             HorizontalRangeAnnotation(y1: 4, y2: 10, color: MockData.color1),
