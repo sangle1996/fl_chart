@@ -1,3 +1,7 @@
+## newVersion
+* **IMPROVEMENT** Allow to return a Widget in [SideTitles](https://github.com/imaNNeoFighT/fl_chart/blob/master/repo_files/documentations/base_chart.md#sidetitles) . `getTitles` instead of a `String`. For example, you can pass an [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html) widget as a title, #183. Check below samples:
+* **BREAKING** Structure of `FlTitlesData`, `AxisTitles`, and `SideTitles` are changed. Because we are using a new system which allows you to pass any [Flutter Widget](https://docs.flutter.dev/development/ui/widgets) as a title instead of passing `string`, `textStyle`, `textAlign`, `rotation`, ... (Read our [Migration Guide](https://github.com/imaNNeoFighT/fl_chart/blob/master/repo_files/documentations/migration_guides/migrate_to_.md))
+
 ## 0.45.0
 * **BUGFIX** Fix `clipData` implementation in ScatterChart and LineChart, #897.
 * **BUGFIX** Fix PieChart changing sections issue (we have disabled semantics for pieChart badgeWidgets), #861.
