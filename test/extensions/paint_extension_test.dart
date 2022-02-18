@@ -1,9 +1,5 @@
 import 'dart:ui';
 
-import 'package:fl_chart/src/chart/base/axis_chart/axis_chart_data.dart';
-import 'package:fl_chart/src/extensions/color_extension.dart';
-import 'package:fl_chart/src/extensions/edge_insets_extension.dart';
-import 'package:fl_chart/src/extensions/fl_titles_data_extension.dart';
 import 'package:fl_chart/src/extensions/paint_extension.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
