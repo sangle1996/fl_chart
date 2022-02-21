@@ -894,6 +894,61 @@ class FlDotCirclePainter extends FlDotPainter {
       ];
 }
 
+class FlDotRectanglePainter extends FlDotPainter {
+  Color color;
+
+  double height;
+
+  double width;
+
+  Color strokeColor;
+
+  double strokeWidth;
+
+  FlDotRectanglePainter({
+    Color? color,
+    double? height,
+    double? width,
+    Color? strokeColor,
+    double? strokeWidth,
+  })  : color = color ?? Colors.green,
+        height = height ?? 4.0,
+        width = width ?? 4.0,
+        strokeColor = strokeColor ?? Colors.green.darken(),
+        strokeWidth = strokeWidth ?? 1.0;
+
+  @override
+  void draw(Canvas canvas, FlSpot spot, Offset offsetInCanvas) {
+    if (strokeWidth != 0.0 && strokeColor.opacity != 0.0) {
+      canvas.drawRect(
+          offsetInCanvas  & Size(width, height),
+          Paint()
+            ..color = strokeColor
+            ..strokeWidth = strokeWidth
+            ..style = PaintingStyle.stroke);
+    }
+    canvas.drawRect(
+        offsetInCanvas  & Size(width, height),
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.fill);
+  }
+
+  @override
+  Size getSize(FlSpot spot) {
+    return Size(height, width);
+  }
+
+  @override
+  List<Object?> get props => [
+    color,
+    height,
+    width,
+    strokeColor,
+    strokeWidth,
+  ];
+}
+
 /// This class is an implementation of a [FlDotPainter] that draws
 /// a squared shape
 class FlDotSquarePainter extends FlDotPainter {
