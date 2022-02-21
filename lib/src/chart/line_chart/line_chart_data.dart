@@ -1,11 +1,14 @@
-// coverage:ignore-file
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/src/chart/base/axis_chart/axis_chart_data.dart';
+import 'package:fl_chart/src/chart/base/base_chart/base_chart_data.dart';
+import 'package:fl_chart/src/chart/line_chart/line_chart.dart';
 import 'package:fl_chart/src/chart/line_chart/line_chart_helper.dart';
 import 'package:fl_chart/src/extensions/color_extension.dart';
 import 'package:fl_chart/src/utils/lerp.dart';
+import 'package:fl_chart/src/utils/utils.dart';
 import 'package:flutter/material.dart' hide Image;
 
 /// [LineChart] needs this class to render itself.
@@ -73,10 +76,8 @@ class LineChartData extends AxisChartData with EquatableMixin {
     RangeAnnotations? rangeAnnotations,
     double? minX,
     double? maxX,
-    double? baselineX,
     double? minY,
     double? maxY,
-    double? baselineY,
     FlClipData? clipData,
     Color? backgroundColor,
   })  : lineBarsData = lineBarsData ?? const [],
@@ -93,20 +94,10 @@ class LineChartData extends AxisChartData with EquatableMixin {
           rangeAnnotations: rangeAnnotations ?? RangeAnnotations(),
           clipData: clipData ?? FlClipData.none(),
           backgroundColor: backgroundColor,
-          minX: minX ??
-              LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const [])
-                  .minX,
-          maxX: maxX ??
-              LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const [])
-                  .maxX,
-          baselineX: baselineX,
-          minY: minY ??
-              LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const [])
-                  .minY,
-          maxY: maxY ??
-              LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const [])
-                  .maxY,
-          baselineY: baselineY,
+          minX: minX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const []).minX,
+          maxX: maxX ?? LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const []).maxX,
+          minY: minY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const []).minY,
+          maxY: maxY ?? LineChartHelper.calculateMaxAxisValues(lineBarsData ?? const []).maxY,
         );
 
   /// Lerps a [BaseChartData] based on [t] value, check [Tween.lerp].
@@ -116,25 +107,18 @@ class LineChartData extends AxisChartData with EquatableMixin {
       return LineChartData(
         minX: lerpDouble(a.minX, b.minX, t),
         maxX: lerpDouble(a.maxX, b.maxX, t),
-        baselineX: lerpDouble(a.baselineX, b.baselineX, t),
         minY: lerpDouble(a.minY, b.minY, t),
         maxY: lerpDouble(a.maxY, b.maxY, t),
-        baselineY: lerpDouble(a.baselineY, b.baselineY, t),
         backgroundColor: Color.lerp(a.backgroundColor, b.backgroundColor, t),
         borderData: FlBorderData.lerp(a.borderData, b.borderData, t),
         clipData: b.clipData,
-        extraLinesData:
-            ExtraLinesData.lerp(a.extraLinesData, b.extraLinesData, t),
+        extraLinesData: ExtraLinesData.lerp(a.extraLinesData, b.extraLinesData, t),
         gridData: FlGridData.lerp(a.gridData, b.gridData, t),
         titlesData: FlTitlesData.lerp(a.titlesData, b.titlesData, t),
-        axisTitleData:
-            FlAxisTitleData.lerp(a.axisTitleData, b.axisTitleData, t),
-        rangeAnnotations:
-            RangeAnnotations.lerp(a.rangeAnnotations, b.rangeAnnotations, t),
-        lineBarsData:
-            lerpLineChartBarDataList(a.lineBarsData, b.lineBarsData, t),
-        betweenBarsData:
-            lerpBetweenBarsDataList(a.betweenBarsData, b.betweenBarsData, t),
+        axisTitleData: FlAxisTitleData.lerp(a.axisTitleData, b.axisTitleData, t),
+        rangeAnnotations: RangeAnnotations.lerp(a.rangeAnnotations, b.rangeAnnotations, t),
+        lineBarsData: lerpLineChartBarDataList(a.lineBarsData, b.lineBarsData, t),
+        betweenBarsData: lerpBetweenBarsDataList(a.betweenBarsData, b.betweenBarsData, t),
         lineTouchData: b.lineTouchData,
         showingTooltipIndicators: b.showingTooltipIndicators,
       );
@@ -158,10 +142,8 @@ class LineChartData extends AxisChartData with EquatableMixin {
     FlBorderData? borderData,
     double? minX,
     double? maxX,
-    double? baselineX,
     double? minY,
     double? maxY,
-    double? baselineY,
     FlClipData? clipData,
     Color? backgroundColor,
   }) {
@@ -173,16 +155,13 @@ class LineChartData extends AxisChartData with EquatableMixin {
       rangeAnnotations: rangeAnnotations ?? this.rangeAnnotations,
       extraLinesData: extraLinesData ?? this.extraLinesData,
       lineTouchData: lineTouchData ?? this.lineTouchData,
-      showingTooltipIndicators:
-          showingTooltipIndicators ?? this.showingTooltipIndicators,
+      showingTooltipIndicators: showingTooltipIndicators ?? this.showingTooltipIndicators,
       gridData: gridData ?? this.gridData,
       borderData: borderData ?? this.borderData,
       minX: minX ?? this.minX,
       maxX: maxX ?? this.maxX,
-      baselineX: baselineX ?? this.baselineX,
       minY: minY ?? this.minY,
       maxY: maxY ?? this.maxY,
-      baselineY: baselineY ?? this.baselineY,
       clipData: clipData ?? this.clipData,
       backgroundColor: backgroundColor ?? this.backgroundColor,
     );
@@ -203,10 +182,8 @@ class LineChartData extends AxisChartData with EquatableMixin {
         rangeAnnotations,
         minX,
         maxX,
-        baselineX,
         minY,
         maxY,
-        baselineY,
         clipData,
         backgroundColor,
       ];
@@ -354,8 +331,7 @@ class LineChartBarData with EquatableMixin {
         isCurved = isCurved ?? false,
         curveSmoothness = curveSmoothness ?? 0.35,
         preventCurveOverShooting = preventCurveOverShooting ?? false,
-        preventCurveOvershootingThreshold =
-            preventCurveOvershootingThreshold ?? 10.0,
+        preventCurveOvershootingThreshold = preventCurveOvershootingThreshold ?? 10.0,
         isStrokeCapRound = isStrokeCapRound ?? false,
         belowBarData = belowBarData ?? BarAreaData(),
         aboveBarData = aboveBarData ?? BarAreaData(),
@@ -367,8 +343,7 @@ class LineChartBarData with EquatableMixin {
         lineChartStepData = lineChartStepData ?? LineChartStepData();
 
   /// Lerps a [LineChartBarData] based on [t] value, check [Tween.lerp].
-  static LineChartBarData lerp(
-      LineChartBarData a, LineChartBarData b, double t) {
+  static LineChartBarData lerp(LineChartBarData a, LineChartBarData b, double t) {
     return LineChartBarData(
       show: b.show,
       barWidth: lerpDouble(a.barWidth, b.barWidth, t),
@@ -378,10 +353,8 @@ class LineChartBarData with EquatableMixin {
       isCurved: b.isCurved,
       isStrokeCapRound: b.isStrokeCapRound,
       preventCurveOverShooting: b.preventCurveOverShooting,
-      preventCurveOvershootingThreshold: lerpDouble(
-          a.preventCurveOvershootingThreshold,
-          b.preventCurveOvershootingThreshold,
-          t),
+      preventCurveOvershootingThreshold:
+          lerpDouble(a.preventCurveOvershootingThreshold, b.preventCurveOvershootingThreshold, t),
       dotData: FlDotData.lerp(a.dotData, b.dotData, t),
       dashArray: lerpIntList(a.dashArray, b.dashArray, t),
       colors: lerpColorList(a.colors, b.colors, t),
@@ -392,8 +365,7 @@ class LineChartBarData with EquatableMixin {
       showingIndicators: b.showingIndicators,
       shadow: Shadow.lerp(a.shadow, b.shadow, t),
       isStepLineChart: b.isStepLineChart,
-      lineChartStepData:
-          LineChartStepData.lerp(a.lineChartStepData, b.lineChartStepData, t),
+      lineChartStepData: LineChartStepData.lerp(a.lineChartStepData, b.lineChartStepData, t),
     );
   }
 
@@ -431,10 +403,9 @@ class LineChartBarData with EquatableMixin {
       barWidth: barWidth ?? this.barWidth,
       isCurved: isCurved ?? this.isCurved,
       curveSmoothness: curveSmoothness ?? this.curveSmoothness,
-      preventCurveOverShooting:
-          preventCurveOverShooting ?? this.preventCurveOverShooting,
-      preventCurveOvershootingThreshold: preventCurveOvershootingThreshold ??
-          this.preventCurveOvershootingThreshold,
+      preventCurveOverShooting: preventCurveOverShooting ?? this.preventCurveOverShooting,
+      preventCurveOvershootingThreshold:
+          preventCurveOvershootingThreshold ?? this.preventCurveOvershootingThreshold,
       isStrokeCapRound: isStrokeCapRound ?? this.isStrokeCapRound,
       belowBarData: belowBarData ?? this.belowBarData,
       aboveBarData: aboveBarData ?? this.aboveBarData,
@@ -491,8 +462,7 @@ class LineChartStepData with EquatableMixin {
   LineChartStepData({this.stepDirection = stepDirectionMiddle});
 
   /// Lerps a [LineChartStepData] based on [t] value, check [Tween.lerp].
-  static LineChartStepData lerp(
-      LineChartStepData a, LineChartStepData b, double t) {
+  static LineChartStepData lerp(LineChartStepData a, LineChartStepData b, double t) {
     return LineChartStepData(
       stepDirection: lerpDouble(a.stepDirection, b.stepDirection, t)!,
     );
@@ -575,8 +545,7 @@ class BarAreaData with EquatableMixin {
       gradientTo: Offset.lerp(a.gradientTo, b.gradientTo, t),
       spotsLine: BarAreaSpotsLine.lerp(a.spotsLine, b.spotsLine, t),
       colors: lerpColorList(a.colors, b.colors, t),
-      gradientColorStops:
-          lerpDoubleList(a.gradientColorStops, b.gradientColorStops, t),
+      gradientColorStops: lerpDoubleList(a.gradientColorStops, b.gradientColorStops, t),
       cutOffY: lerpDouble(a.cutOffY, b.cutOffY, t),
       applyCutOffY: b.applyCutOffY,
     );
@@ -644,8 +613,7 @@ class BetweenBarsData with EquatableMixin {
       gradientFrom: Offset.lerp(a.gradientFrom, b.gradientFrom, t),
       gradientTo: Offset.lerp(a.gradientTo, b.gradientTo, t),
       colors: lerpColorList(a.colors, b.colors, t),
-      gradientColorStops:
-          lerpDoubleList(a.gradientColorStops, b.gradientColorStops, t),
+      gradientColorStops: lerpDoubleList(a.gradientColorStops, b.gradientColorStops, t),
     );
   }
 
@@ -689,8 +657,7 @@ class BarAreaSpotsLine with EquatableMixin {
         applyCutOffY = applyCutOffY ?? true;
 
   /// Lerps a [BarAreaSpotsLine] based on [t] value, check [Tween.lerp].
-  static BarAreaSpotsLine lerp(
-      BarAreaSpotsLine a, BarAreaSpotsLine b, double t) {
+  static BarAreaSpotsLine lerp(BarAreaSpotsLine a, BarAreaSpotsLine b, double t) {
     return BarAreaSpotsLine(
       show: b.show,
       checkToShowSpotLine: b.checkToShowSpotLine,
@@ -742,19 +709,14 @@ Color _defaultGetDotColor(FlSpot _, double xPercentage, LineChartBarData bar) {
 
 /// If there is one color in [LineChartBarData.colors], it returns that color in a darker mode,
 /// otherwise it returns the color along the gradient colors based on the [xPercentage] in a darker mode.
-Color _defaultGetDotStrokeColor(
-    FlSpot spot, double xPercentage, LineChartBarData bar) {
+Color _defaultGetDotStrokeColor(FlSpot spot, double xPercentage, LineChartBarData bar) {
   Color color;
   if (bar.colors.isEmpty) {
     throw ArgumentError('"colors" is empty.');
   } else if (bar.colors.length == 1) {
     color = bar.colors[0];
   } else {
-    color = lerpGradient(
-      bar.colors,
-      bar.getSafeColorStops(),
-      xPercentage / 100,
-    );
+    color = lerpGradient(bar.colors, bar.getSafeColorStops(), xPercentage / 100);
   }
   return color.darken();
 }
@@ -765,11 +727,9 @@ Color _defaultGetDotStrokeColor(
 /// [LineChartBarData] is the chart's bar.
 /// [int] is the index position of the spot.
 /// It should return a [FlDotPainter] that needs to be used for drawing target.
-typedef GetDotPainterCallback = FlDotPainter Function(
-    FlSpot, double, LineChartBarData, int);
+typedef GetDotPainterCallback = FlDotPainter Function(FlSpot, double, LineChartBarData, int);
 
-FlDotPainter _defaultGetDotPainter(
-    FlSpot spot, double xPercentage, LineChartBarData bar, int index,
+FlDotPainter _defaultGetDotPainter(FlSpot spot, double xPercentage, LineChartBarData bar, int index,
     {double? size}) {
   return FlDotCirclePainter(
     radius: size,
@@ -858,6 +818,9 @@ class FlDotCirclePainter extends FlDotPainter {
         strokeColor = strokeColor ?? Colors.green.darken(),
         strokeWidth = strokeWidth ?? 1.0;
 
+  static double convertRadiusToSigma(double radius) {
+    return radius * 0.57735 + 0.5;
+  }
   /// Implementation of the parent class to draw the circle
   @override
   void draw(Canvas canvas, FlSpot spot, Offset offsetInCanvas) {
@@ -868,14 +831,16 @@ class FlDotCirclePainter extends FlDotPainter {
           Paint()
             ..color = strokeColor
             ..strokeWidth = strokeWidth
-            ..style = PaintingStyle.stroke);
+            ..style = PaintingStyle.stroke
+      );
     }
     canvas.drawCircle(
         offsetInCanvas,
         radius,
         Paint()
           ..color = color
-          ..style = PaintingStyle.fill);
+          ..style = PaintingStyle.fill
+    );
   }
 
   /// Implementation of the parent class to get the size of the circle
@@ -962,6 +927,61 @@ class FlDotSquarePainter extends FlDotPainter {
         strokeColor,
         strokeWidth,
       ];
+}
+
+class FlDotRectanglePainter extends FlDotPainter {
+  Color color;
+
+  double height;
+
+  double width;
+
+  Color strokeColor;
+
+  double strokeWidth;
+
+  FlDotRectanglePainter({
+    Color? color,
+    double? height,
+    double? width,
+    Color? strokeColor,
+    double? strokeWidth,
+  })  : color = color ?? Colors.green,
+        height = height ?? 4.0,
+        width = width ?? 4.0,
+        strokeColor = strokeColor ?? Colors.green.darken(),
+        strokeWidth = strokeWidth ?? 1.0;
+
+  @override
+  void draw(Canvas canvas, FlSpot spot, Offset offsetInCanvas) {
+    if (strokeWidth != 0.0 && strokeColor.opacity != 0.0) {
+      canvas.drawRect(
+          offsetInCanvas  & Size(width, height),
+          Paint()
+            ..color = strokeColor
+            ..strokeWidth = strokeWidth
+            ..style = PaintingStyle.stroke);
+    }
+    canvas.drawRect(
+        offsetInCanvas  & Size(width, height),
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.fill);
+  }
+
+  @override
+  Size getSize(FlSpot spot) {
+    return Size(height, width);
+  }
+
+  @override
+  List<Object?> get props => [
+    color,
+    height,
+    width,
+    strokeColor,
+    strokeWidth,
+  ];
 }
 
 /// This class is an implementation of a [FlDotPainter] that draws
@@ -1067,10 +1087,7 @@ class HorizontalLine extends FlLine with EquatableMixin {
     this.image,
     this.sizedPicture,
   })  : label = label ?? HorizontalLineLabel(),
-        super(
-            color: color ?? Colors.black,
-            strokeWidth: strokeWidth ?? 2,
-            dashArray: dashArray);
+        super(color: color ?? Colors.black, strokeWidth: strokeWidth ?? 2, dashArray: dashArray);
 
   /// Lerps a [HorizontalLine] based on [t] value, check [Tween.lerp].
   static HorizontalLine lerp(HorizontalLine a, HorizontalLine b, double t) {
@@ -1134,10 +1151,7 @@ class VerticalLine extends FlLine with EquatableMixin {
     this.image,
     this.sizedPicture,
   })  : label = label ?? VerticalLineLabel(),
-        super(
-            color: color ?? Colors.black,
-            strokeWidth: strokeWidth ?? 2,
-            dashArray: dashArray);
+        super(color: color ?? Colors.black, strokeWidth: strokeWidth ?? 2, dashArray: dashArray);
 
   /// Lerps a [VerticalLine] based on [t] value, check [Tween.lerp].
   static VerticalLine lerp(VerticalLine a, VerticalLine b, double t) {
@@ -1184,10 +1198,7 @@ abstract class FlLineLabel with EquatableMixin {
   /// size, ... of the text.
   /// [show] determines showing label or not.
   FlLineLabel(
-      {required this.show,
-      required this.padding,
-      required this.style,
-      required this.alignment});
+      {required this.show, required this.padding, required this.style, required this.alignment});
 
   /// Used for equality check, see [EquatableMixin].
   @override
@@ -1205,8 +1216,7 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
   final String Function(HorizontalLine) labelResolver;
 
   /// Returns the [HorizontalLine.y] as the drawing label.
-  static String defaultLineLabelResolver(HorizontalLine line) =>
-      line.y.toStringAsFixed(1);
+  static String defaultLineLabelResolver(HorizontalLine line) => line.y.toStringAsFixed(1);
 
   /// Draws a title on the [HorizontalLine], align it with [alignment] over the line,
   /// applies [padding] for spaces, and applies [style for changing color,
@@ -1220,8 +1230,7 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
     Alignment? alignment,
     bool show = false,
     String Function(HorizontalLine)? labelResolver,
-  })  : labelResolver =
-            labelResolver ?? HorizontalLineLabel.defaultLineLabelResolver,
+  })  : labelResolver = labelResolver ?? HorizontalLineLabel.defaultLineLabelResolver,
         super(
           show: show,
           padding: padding ?? const EdgeInsets.all(6),
@@ -1230,11 +1239,9 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
         );
 
   /// Lerps a [HorizontalLineLabel] based on [t] value, check [Tween.lerp].
-  static HorizontalLineLabel lerp(
-      HorizontalLineLabel a, HorizontalLineLabel b, double t) {
+  static HorizontalLineLabel lerp(HorizontalLineLabel a, HorizontalLineLabel b, double t) {
     return HorizontalLineLabel(
-      padding:
-          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
+      padding: EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
       style: TextStyle.lerp(a.style, b.style, t),
       alignment: Alignment.lerp(a.alignment, b.alignment, t),
       labelResolver: b.labelResolver,
@@ -1259,8 +1266,7 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
   final String Function(VerticalLine) labelResolver;
 
   /// Returns the [VerticalLine.x] as the drawing label.
-  static String defaultLineLabelResolver(VerticalLine line) =>
-      line.x.toStringAsFixed(1);
+  static String defaultLineLabelResolver(VerticalLine line) => line.x.toStringAsFixed(1);
 
   /// Draws a title on the [VerticalLine], align it with [alignment] over the line,
   /// applies [padding] for spaces, and applies [style for changing color,
@@ -1274,8 +1280,7 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
     Alignment? alignment,
     bool? show,
     String Function(VerticalLine)? labelResolver,
-  })  : labelResolver =
-            labelResolver ?? VerticalLineLabel.defaultLineLabelResolver,
+  })  : labelResolver = labelResolver ?? VerticalLineLabel.defaultLineLabelResolver,
         super(
           show: show ?? false,
           padding: padding ?? const EdgeInsets.all(6),
@@ -1289,11 +1294,9 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         );
 
   /// Lerps a [VerticalLineLabel] based on [t] value, check [Tween.lerp].
-  static VerticalLineLabel lerp(
-      VerticalLineLabel a, VerticalLineLabel b, double t) {
+  static VerticalLineLabel lerp(VerticalLineLabel a, VerticalLineLabel b, double t) {
     return VerticalLineLabel(
-      padding:
-          EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
+      padding: EdgeInsets.lerp(a.padding as EdgeInsets, b.padding as EdgeInsets, t),
       style: TextStyle.lerp(a.style, b.style, t),
       alignment: Alignment.lerp(a.alignment, b.alignment, t),
       labelResolver: b.labelResolver,
@@ -1379,8 +1382,7 @@ class ExtraLinesData with EquatableMixin {
   static ExtraLinesData lerp(ExtraLinesData a, ExtraLinesData b, double t) {
     return ExtraLinesData(
       extraLinesOnTop: b.extraLinesOnTop,
-      horizontalLines:
-          lerpHorizontalLineList(a.horizontalLines, b.horizontalLines, t),
+      horizontalLines: lerpHorizontalLineList(a.horizontalLines, b.horizontalLines, t),
       verticalLines: lerpVerticalLineList(a.verticalLines, b.verticalLines, t),
     );
   }
@@ -1408,9 +1410,6 @@ class LineTouchData extends FlTouchData<LineTouchResponse> with EquatableMixin {
 
   /// Distance threshold to handle the touch event.
   final double touchSpotThreshold;
-
-  /// Distance function used when finding closest points to touch point
-  final CalculateTouchDistance distanceCalculator;
 
   /// Determines to handle default built-in touch responses,
   /// [LineTouchResponse] shows a tooltip popup above the touched spot.
@@ -1448,15 +1447,12 @@ class LineTouchData extends FlTouchData<LineTouchResponse> with EquatableMixin {
     LineTouchTooltipData? touchTooltipData,
     GetTouchedSpotIndicator? getTouchedSpotIndicator,
     double? touchSpotThreshold,
-    CalculateTouchDistance? distanceCalculator,
     bool? handleBuiltInTouches,
     GetTouchLineY? getTouchLineStart,
     GetTouchLineY? getTouchLineEnd,
   })  : touchTooltipData = touchTooltipData ?? LineTouchTooltipData(),
-        getTouchedSpotIndicator =
-            getTouchedSpotIndicator ?? defaultTouchedIndicators,
+        getTouchedSpotIndicator = getTouchedSpotIndicator ?? defaultTouchedIndicators,
         touchSpotThreshold = touchSpotThreshold ?? 10,
-        distanceCalculator = distanceCalculator ?? _xDistance,
         handleBuiltInTouches = handleBuiltInTouches ?? true,
         getTouchLineStart = getTouchLineStart ?? defaultGetTouchLineStart,
         getTouchLineEnd = getTouchLineEnd ?? defaultGetTouchLineEnd,
@@ -1471,7 +1467,6 @@ class LineTouchData extends FlTouchData<LineTouchResponse> with EquatableMixin {
     LineTouchTooltipData? touchTooltipData,
     GetTouchedSpotIndicator? getTouchedSpotIndicator,
     double? touchSpotThreshold,
-    CalculateTouchDistance? distanceCalculator,
     GetTouchLineY? getTouchLineStart,
     GetTouchLineY? getTouchLineEnd,
     bool? handleBuiltInTouches,
@@ -1481,10 +1476,8 @@ class LineTouchData extends FlTouchData<LineTouchResponse> with EquatableMixin {
       touchCallback: touchCallback ?? this.touchCallback,
       mouseCursorResolver: mouseCursorResolver ?? this.mouseCursorResolver,
       touchTooltipData: touchTooltipData ?? this.touchTooltipData,
-      getTouchedSpotIndicator:
-          getTouchedSpotIndicator ?? this.getTouchedSpotIndicator,
+      getTouchedSpotIndicator: getTouchedSpotIndicator ?? this.getTouchedSpotIndicator,
       touchSpotThreshold: touchSpotThreshold ?? this.touchSpotThreshold,
-      distanceCalculator: distanceCalculator ?? this.distanceCalculator,
       getTouchLineStart: getTouchLineStart ?? this.getTouchLineStart,
       getTouchLineEnd: getTouchLineEnd ?? this.getTouchLineEnd,
       handleBuiltInTouches: handleBuiltInTouches ?? this.handleBuiltInTouches,
@@ -1500,7 +1493,6 @@ class LineTouchData extends FlTouchData<LineTouchResponse> with EquatableMixin {
         touchTooltipData,
         getTouchedSpotIndicator,
         touchSpotThreshold,
-        distanceCalculator,
         handleBuiltInTouches,
         getTouchLineStart,
         getTouchLineEnd,
@@ -1517,17 +1509,7 @@ typedef GetTouchedSpotIndicator = List<TouchedSpotIndicatorData?> Function(
     LineChartBarData barData, List<int> spotIndexes);
 
 /// Used for determine the touch indicator line's starting/end point.
-typedef GetTouchLineY = double Function(
-    LineChartBarData barData, int spotIndex);
-
-/// Used to calculate the distance between coordinates of a touch event and a spot
-typedef CalculateTouchDistance = double Function(
-    Offset touchPoint, Offset spotPixelCoordinates);
-
-/// Default distanceCalculator only considers distance on x axis
-double _xDistance(Offset touchPoint, Offset spotPixelCoordinates) {
-  return ((touchPoint.dx - spotPixelCoordinates.dx)).abs();
-}
+typedef GetTouchLineY = double Function(LineChartBarData barData, int spotIndex);
 
 /// Default presentation of touched indicators.
 List<TouchedSpotIndicatorData> defaultTouchedIndicators(
@@ -1622,8 +1604,7 @@ class LineTouchTooltipData with EquatableMixin {
     double? rotateAngle,
   })  : tooltipBgColor = tooltipBgColor ?? Colors.blueGrey.darken(15),
         tooltipRoundedRadius = tooltipRoundedRadius ?? 4,
-        tooltipPadding = tooltipPadding ??
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        tooltipPadding = tooltipPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         tooltipMargin = tooltipMargin ?? 16,
         maxContentWidth = maxContentWidth ?? 120,
         getTooltipItems = getTooltipItems ?? defaultLineTooltipItem,
@@ -1656,8 +1637,7 @@ class LineTouchTooltipData with EquatableMixin {
 /// then you should and pass your custom [LineTooltipItem] list
 /// (length should be equal to the [touchedSpots.length]),
 /// to show inside the tooltip popup.
-typedef GetLineTooltipItems = List<LineTooltipItem?> Function(
-    List<LineBarSpot> touchedSpots);
+typedef GetLineTooltipItems = List<LineTooltipItem?> Function(List<LineBarSpot> touchedSpots);
 
 /// Default implementation for [LineTouchTooltipData.getTooltipItems].
 List<LineTooltipItem> defaultLineTooltipItem(List<LineBarSpot> touchedSpots) {
@@ -1702,19 +1682,6 @@ class LineBarSpot extends FlSpot with EquatableMixin {
         x,
         y,
       ];
-}
-
-/// A [LineBarSpot] that holds information about the event that selected it
-class TouchLineBarSpot extends LineBarSpot {
-  /// Distance in pixels from where the user taped
-  final double distance;
-
-  TouchLineBarSpot(
-    LineChartBarData bar,
-    int barIndex,
-    FlSpot spot,
-    this.distance,
-  ) : super(bar, barIndex, spot);
 }
 
 /// Holds data of showing each row item in the tooltip popup.
@@ -1787,8 +1754,7 @@ class ShowingTooltipIndicators with EquatableMixin {
 
   /// [LineChart] shows some tooltips over each [LineChartBarData],
   /// and [showingSpots] determines in which spots this tooltip should be shown.
-  ShowingTooltipIndicators(List<LineBarSpot> showingSpots)
-      : showingSpots = showingSpots;
+  ShowingTooltipIndicators(List<LineBarSpot> showingSpots) : showingSpots = showingSpots;
 
   /// Used for equality check, see [EquatableMixin].
   @override
@@ -1802,17 +1768,16 @@ class ShowingTooltipIndicators with EquatableMixin {
 class LineTouchResponse extends BaseTouchResponse {
   /// touch happened on these spots
   /// (if a single line provided on the chart, [lineBarSpots]'s length will be 1 always)
-  final List<TouchLineBarSpot>? lineBarSpots;
+  final List<LineBarSpot>? lineBarSpots;
 
   /// If touch happens, [LineChart] processes it internally and
   /// passes out a list of [lineBarSpots] it gives you information about the touched spot.
-  /// They are sorted based on their distance to the touch event
   LineTouchResponse(this.lineBarSpots) : super();
 
   /// Copies current [LineTouchResponse] to a new [LineTouchResponse],
   /// and replaces provided values.
   LineTouchResponse copyWith({
-    List<TouchLineBarSpot>? lineBarSpots,
+    List<LineBarSpot>? lineBarSpots,
   }) {
     return LineTouchResponse(
       lineBarSpots ?? this.lineBarSpots,
