@@ -1666,7 +1666,7 @@ class LineBarSpot extends FlSpot with EquatableMixin {
     this.barIndex,
     FlSpot spot,
   )   : spotIndex = bar.spots.indexOf(spot),
-        super(spot.x, spot.y);
+        super(spot.x, spot.y, value: spot.value);
 
   /// Used for equality check, see [EquatableMixin].
   @override
