@@ -170,10 +170,11 @@ class ScatterSpot extends FlSpot with EquatableMixin {
     bool? show,
     double? radius,
     Color? color,
+    String? value,
   })  : show = show ?? true,
         radius = radius ?? 6,
         color = color ?? Colors.primaries[((x * y) % Colors.primaries.length).toInt()],
-        super(x, y);
+        super(x, y, value: value ?? '');
 
   @override
   ScatterSpot copyWith({
@@ -182,6 +183,7 @@ class ScatterSpot extends FlSpot with EquatableMixin {
     bool? show,
     double? radius,
     Color? color,
+    String? value,
   }) {
     return ScatterSpot(
       x ?? this.x,
@@ -189,6 +191,7 @@ class ScatterSpot extends FlSpot with EquatableMixin {
       show: show ?? this.show,
       radius: radius ?? this.radius,
       color: color ?? this.color,
+      value: value ?? this.value,
     );
   }
 
