@@ -428,25 +428,29 @@ class SideTitles with EquatableMixin {
 class FlSpot with EquatableMixin {
   final double x;
   final double y;
+  final String? value;
 
   /// [x] determines cartesian (axis based) horizontally position
   /// 0 means most left point of the chart
   ///
   /// [y] determines cartesian (axis based) vertically position
   /// 0 means most bottom point of the chart
-  FlSpot(double x, double y)
+  FlSpot(double x, double y, {String? value})
       : x = x,
-        y = y;
+        y = y,
+        value = value;
 
   /// Copies current [FlSpot] to a new [FlSpot],
   /// and replaces provided values.
   FlSpot copyWith({
     double? x,
     double? y,
+    String? value
   }) {
     return FlSpot(
       x ?? this.x,
       y ?? this.y,
+      value:  value ?? this.value,
     );
   }
 
