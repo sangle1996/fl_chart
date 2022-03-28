@@ -842,12 +842,17 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
     }
     final viewSize = getChartUsableDrawSize(canvasWrapper.size, holder);
 
+    double offsetCustomX = 0.0;
+    double offsetCustomY = 0.0;
+
     // Left Titles
     if (!data.isVerticalMinMaxIsZero) {
       final leftTitles = targetData.titlesData.leftTitles;
       final leftInterval =
           leftTitles.interval ?? getEfficientInterval(viewSize.height, data.verticalDiff);
       if (leftTitles.showTitles) {
+        offsetCustomX = targetData.titlesData.leftTitles.offset.dx;
+        offsetCustomY = targetData.titlesData.leftTitles.offset.dy;
         var verticalSeek = data.minY;
         while (verticalSeek <= data.maxY) {
           if (leftTitles.checkToShowTitle(
@@ -872,7 +877,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
             x -= tp.width + leftTitles.margin;
             y -= tp.height / 2;
             x += calculateRotationOffset(tp.size, leftTitles.rotateAngle).dx;
-            canvasWrapper.drawText(tp, Offset(x, y), leftTitles.rotateAngle);
+            canvasWrapper.drawText(tp, Offset(x + offsetCustomX, y + offsetCustomY), leftTitles.rotateAngle);
           }
           if (data.maxY - verticalSeek < leftInterval && data.maxY != verticalSeek) {
             verticalSeek = data.maxY;
@@ -889,6 +894,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       final topInterval =
           topTitles.interval ?? getEfficientInterval(viewSize.width, data.horizontalDiff);
       if (topTitles.showTitles) {
+        offsetCustomX = targetData.titlesData.topTitles.offset.dx;
+        offsetCustomY = targetData.titlesData.topTitles.offset.dy;
         var horizontalSeek = data.minX;
         while (horizontalSeek <= data.maxX) {
           if (topTitles.checkToShowTitle(
@@ -914,7 +921,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
             x -= tp.width / 2;
             y -= topTitles.margin + tp.height;
             y += calculateRotationOffset(tp.size, topTitles.rotateAngle).dy;
-            canvasWrapper.drawText(tp, Offset(x, y), topTitles.rotateAngle);
+            canvasWrapper.drawText(tp, Offset(x + offsetCustomX, y + offsetCustomY), topTitles.rotateAngle);
           }
           if (data.maxX - horizontalSeek < topInterval && data.maxX != horizontalSeek) {
             horizontalSeek = data.maxX;
@@ -931,6 +938,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       final rightInterval =
           rightTitles.interval ?? getEfficientInterval(viewSize.height, data.verticalDiff);
       if (rightTitles.showTitles) {
+        offsetCustomX = targetData.titlesData.rightTitles.offset.dx;
+        offsetCustomY = targetData.titlesData.rightTitles.offset.dy;
         var verticalSeek = data.minY;
         while (verticalSeek <= data.maxY) {
           if (rightTitles.checkToShowTitle(
@@ -956,7 +965,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
             x += rightTitles.margin;
             y -= tp.height / 2;
             x -= calculateRotationOffset(tp.size, rightTitles.rotateAngle).dx;
-            canvasWrapper.drawText(tp, Offset(x, y), rightTitles.rotateAngle);
+            canvasWrapper.drawText(tp, Offset(x + offsetCustomX, y + offsetCustomY), rightTitles.rotateAngle);
           }
 
           if (data.maxY - verticalSeek < rightInterval && data.maxY != verticalSeek) {
@@ -974,6 +983,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       final bottomInterval =
           bottomTitles.interval ?? getEfficientInterval(viewSize.width, data.horizontalDiff);
       if (bottomTitles.showTitles) {
+        offsetCustomX = targetData.titlesData.bottomTitles.offset.dx;
+        offsetCustomY = targetData.titlesData.bottomTitles.offset.dy;
         var horizontalSeek = data.minX;
         while (horizontalSeek <= data.maxX) {
           if (bottomTitles.checkToShowTitle(
@@ -995,7 +1006,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
             x -= tp.width / 2;
             y += bottomTitles.margin;
             y -= calculateRotationOffset(tp.size, bottomTitles.rotateAngle).dy;
-            canvasWrapper.drawText(tp, Offset(x, y), bottomTitles.rotateAngle);
+            canvasWrapper.drawText(tp, Offset(x + offsetCustomX, y + offsetCustomY), bottomTitles.rotateAngle);
           }
 
           if (data.maxX - horizontalSeek < bottomInterval && data.maxX != horizontalSeek) {
